@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include "meal.h"
 
 int main(int argc, char *argv[]) {
     if(argc != 3) {
@@ -27,7 +29,16 @@ int main(int argc, char *argv[]) {
             tip = number;
         }
     }
+    time_t t;
+    extern const int MenuEntries;
+
+    srand((unsigned)time(&t));
+
+    int meal = rand() % MenuEntries;
+
+    //Display the meal cost, tax amount, tip amount, and total bill on the screen. 
+
     
 
-
+    return 0;
 }
