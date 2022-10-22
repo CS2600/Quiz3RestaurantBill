@@ -1,7 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
 #include "meal.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>
 
 int main(int argc, char *argv[]) {
     if(argc != 3) {
@@ -29,16 +29,31 @@ int main(int argc, char *argv[]) {
             tip = number;
         }
     }
-    time_t t;
+
+    extern const Meal MenuItems[];
     extern const int MenuEntries;
+
+    void searchMealName(const Meal table[], int numEntries, char* name);
+    double searchMealCost(const Meal table[], int numEntries);
+    double calculateTotalBill(double tax, double tip, double mealCost);
+
+    time_t t;
 
     srand((unsigned)time(&t));
 
-    int meal = rand() % MenuEntries;
+    int selectedMeal = rand() % MenuEntries;
+    char mealName[20];
 
-    //Display the meal cost, tax amount, tip amount, and total bill on the screen. 
+    searchMealName(MenuItems, selectedMeal, mealName);
+    double mealCost = searchMealCost(MenuItems, selectedMeal);
+    double totalBill = calculateTotalBill(tax, tip, mealCost);
 
-    
+    printf("mealName: %s\n", mealName);
+    printf("Meal Cost: $%.2f\n", mealCost);
+    printf("Tax: %.2f%%\n", tax);
+    printf("Tip: %.2f%%\n", tip);
+    printf("Total Bill: $%.2f\n", totalBill);
+    //PtrToMeal temp;
 
     return 0;
 }

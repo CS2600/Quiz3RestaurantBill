@@ -4,4 +4,5 @@
 typedef struct {
     char *name;
     double cost;
-} Meal;
+} Meal, *PtrToMeal;
+typedef const Meal *PtrToConstMeal; 
